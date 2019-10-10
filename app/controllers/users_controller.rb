@@ -10,7 +10,7 @@ class UsersController < ApplicationController
         user = User.find_by(username: params[:username])
 
         if user and user.authenticate(params[:password])
-            render json: user
+            render json: { username: user.username, id: user.id }
         else
             render json: { error: 'Username/password combniation invalid!' }, status: 401 
         end
@@ -26,12 +26,18 @@ class UsersController < ApplicationController
         end 
     end
 
+    def validate
+        id = request.headers['Authorization'].to_i
+        user = User.find_by(id: id)
+        if user
+            render json: user
+        else
+            render json: {error: 'Invalid token.'}, status: 401
+        end
+    end
 
-    def show 
-        user = User.find(params[:id])
-        render json: user
-    end 
-
+   
+ 
 
     private 
     def user_params

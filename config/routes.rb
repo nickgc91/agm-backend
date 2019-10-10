@@ -3,4 +3,5 @@ Rails.application.routes.draw do
   post '/signin', to: 'users#signin'
   resources :goals
   post '/newAccount', to: 'users#newAccount'
+  get '/validate', to: 'users#validate'
 end
