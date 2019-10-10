@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+    wrap_parameters :user, include: [:username, :email, :password, :accountability_partner]
 
     def index
         users = User.all
@@ -15,8 +16,7 @@ class UsersController < ApplicationController
         end
     end
 
-
-    def create
+    def newAccount
         user = User.new(user_params)
         
         if user.save
@@ -26,6 +26,7 @@ class UsersController < ApplicationController
         end 
     end
 
+
     def show 
         user = User.find(params[:id])
         render json: user
@@ -34,7 +35,7 @@ class UsersController < ApplicationController
 
     private 
     def user_params
-        params.require(:user).permit(:username, :password)
+        params.require(:user).permit(:username, :email, :password, :accountability_partner)
     end
 
 
