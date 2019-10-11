@@ -22,6 +22,7 @@ class ApplicationController < ActionController::API
     end
 
     def secret
-        '9382746'
+        '9382746' 
     end
+    
 end
