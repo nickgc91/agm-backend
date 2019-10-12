@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_09_141620) do
+ActiveRecord::Schema.define(version: 2019_10_12_132654) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,11 +23,31 @@ ActiveRecord::Schema.define(version: 2019_10_09_141620) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "journalings", force: :cascade do |t|
+    t.string "title"
+    t.text "text"
+    t.integer "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "life_status_trackers", force: :cascade do |t|
+    t.integer "finances"
+    t.integer "dating"
+    t.integer "social"
+    t.integer "spiritual"
+    t.integer "health"
+    t.integer "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "username"
     t.string "password_digest"
     t.string "email"
     t.integer "accountability_partner"
+    t.datetime "last_meeting", default: -> { "CURRENT_TIMESTAMP" }
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
