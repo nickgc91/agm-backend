@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   resources :goals
   post '/newAccount', to: 'users#newAccount'
   get '/validate', to: 'users#validate'
+  get '/getUserData', to: 'users#getUserData'
 end
