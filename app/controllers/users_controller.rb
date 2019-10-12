@@ -6,11 +6,21 @@ class UsersController < ApplicationController
         render json: users
     end
 
+    def getUserData
+        user = get_current_user
+        if user
+            render json: user
+        else
+            render json: {error: 'Invalid token.'}, status: 401
+        end
+    end
+
+
     def signin
         user = User.find_by(username: params[:username])
 
         if user and user.authenticate(params[:password])
-            render json: { username: user.username, token: issue_token({ id: user.id }) }
+            render json: { username: user.username, token: issue_token({ id: user.id }) }, status: :accepted
         else
             render json: { error: 'Username/password combniation invalid!' }, status: 401 
         end
