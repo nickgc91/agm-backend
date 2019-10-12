@@ -5,6 +5,7 @@ class CreateUsers < ActiveRecord::Migration[6.0]
       t.string :password_digest
       t.string :email
       t.integer :accountability_partner
+      t.datetime :last_meeting, default: -> { 'CURRENT_TIMESTAMP' }
 
       t.timestamps
     end
