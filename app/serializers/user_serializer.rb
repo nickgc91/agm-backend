@@ -3,7 +3,10 @@ class UserSerializer < ActiveModel::Serializer
         
     def goals 
         self.object.goals.map do |goal|
-            {goal: goal.title}
+            { goal: goal.title, 
+            action: goal.action_items.map do |actionItem|
+                actionItem.action 
+             end }
         end
     end
 
@@ -15,3 +18,4 @@ class UserSerializer < ActiveModel::Serializer
     end
      
 end
+
