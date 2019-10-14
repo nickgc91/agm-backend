@@ -1,5 +1,6 @@
 class GoalsController < ApplicationController
     wrap_parameters :goal, include: [:goalName, :actionItem1, :actionItem2, :actionItem3, :goalId]
+    
     def index
         goals = Goal.all
         render json: goals
