@@ -1,5 +1,5 @@
 class GoalsController < ApplicationController
-    wrap_parameters :goal, include: [:goalName, :actionItem1, :actionItem2, :actionItem3]
+    wrap_parameters :goal, include: [:goalName, :actionItem1, :actionItem2, :actionItem3, :goalId]
     def index
         goals = Goal.all
         render json: goals
@@ -23,12 +23,23 @@ class GoalsController < ApplicationController
     def update
     end
 
-    def destroy
+    def deleteGoal
+        goal = Goal.find_by(id: delete_params[:goalId])
+        if goal 
+            goal.destroy
+            render json: {}, status: 200
+        else
+            render json: { goal_errors: goal.errors.full_messages }, status: :unprocessable_entity
+        end
     end
 
     private
     def goal_params
         params.require(:goal).permit(:goalName, :actionItem1, :actionItem2, :actionItem3)
+    end
+
+    def delete_params
+        params.require(:goal).permit(:goalId)
     end
 
 
