@@ -20,9 +20,6 @@ class GoalsController < ApplicationController
 
     end
 
-    def update
-    end
-
     def deleteGoal
         goal = Goal.find_by(id: delete_params[:goalId])
         if goal 

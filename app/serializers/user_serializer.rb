@@ -7,8 +7,8 @@ class UserSerializer < ActiveModel::Serializer
             { 
                 numOfGoals: numOfGoals,
                 goal: [goal.id, goal.title, completion_status: goal.complete_status], 
-                action: goal.action_items.map do |actionItem|
-                    {action: actionItem.action, isComplete: actionItem.isCompleted }
+                action: goal.action_items.sort_by{|action| action.id }.map do |actionItem|
+                    {action: actionItem.action, id: actionItem.id, isComplete: actionItem.isCompleted }
              end }
         end
     end
