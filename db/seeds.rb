@@ -15,9 +15,9 @@ User.create(username: "Rod", password: '123456', email: "Rod@Rod.com", accountab
 User.create(username: "Adnan", password: '123456', email: "Adnan@Adnan.com", accountability_partner: 3)
 
 Goal.create(title: "4 runs per week", completion_status: "30%", user_id: 2)
-ActionItem.create(action: "Buy new running shoes.", goal_id: 1)
-ActionItem.create(action: "Clear my schedule Mondays and Wendesdays.", goal_id: 1)
-ActionItem.create(action: "Start with a 20min run on Mondays 4 weeks in a row", goal_id: 1)
+ActionItem.create(action: "Buy new running shoes.", isCompleted: false, goal_id: 1)
+ActionItem.create(action: "Clear my schedule Mondays and Wendesdays.", isCompleted: true, goal_id: 1)
+ActionItem.create(action: "Start with a 20min run on Mondays 4 weeks in a row", isCompleted: false, goal_id: 1)
 
 
 Goal.create(title: "travel to 6 new countries", completion_status: "70%", user_id: 4)

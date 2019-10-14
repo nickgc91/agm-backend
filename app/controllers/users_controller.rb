@@ -15,6 +15,16 @@ class UsersController < ApplicationController
         end
     end
 
+    def getAccPartner
+        user = get_current_user
+        accPartner = User.find_by(id: user.accountability_partner)
+        if accPartner 
+            render json: {accountability_partner: accPartner.username}
+        else
+            render json: {error: 'Invalid token.'}, status: 401
+        end
+    end
+
 
     def signin
         user = User.find_by(username: params[:username])
@@ -33,7 +43,7 @@ class UsersController < ApplicationController
             render json: { username: user.username, token: issue_token({ id: user.id }) }, status: :created
         else
             render json: { user_errors: user.errors.full_messages }, status: :unprocessable_entity
-        end 
+        end
     end
 
     def validate
