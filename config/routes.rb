@@ -13,4 +13,5 @@ Rails.application.routes.draw do
   get '/getAccPartner', to: 'users#getAccPartner'
 
   patch '/updateActionItemIsCompleted', to: 'action_items#updateActionItemIsCompleted'
+  patch '/updateAccountabilityDate', to: 'users#updateAccountabilityDate'
 end

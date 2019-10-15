@@ -1,5 +1,16 @@
 class UsersController < ApplicationController
-    wrap_parameters :user, include: [:username, :email, :password, :accountability_partner]
+    wrap_parameters :user, include: [:username, :email, :password, :accountability_partner, :date]
+
+
+    def updateAccountabilityDate
+        user = get_current_user
+        if user
+            user.update(last_meeting: user_params[:date])
+            render json: { user_last_meeting: user.last_meeting }
+        else
+            render json: {error: 'Error saving date'}, status: 401
+        end
+    end
 
     def index
         users = User.all
@@ -10,16 +21,6 @@ class UsersController < ApplicationController
         user = get_current_user
         if user
             render json: user
-        else
-            render json: {error: 'Invalid token.'}, status: 401
-        end
-    end
-
-    def getAccPartner
-        user = get_current_user
-        accPartner = User.find_by(id: user.accountability_partner)
-        if accPartner 
-            render json: {accountability_partner: accPartner.username}
         else
             render json: {error: 'Invalid token.'}, status: 401
         end
@@ -57,7 +58,7 @@ class UsersController < ApplicationController
 
     private 
     def user_params
-        params.require(:user).permit(:username, :email, :password, :accountability_partner)
+        params.require(:user).permit(:username, :email, :password, :accountability_partner, :date)
     end
 
 
