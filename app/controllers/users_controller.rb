@@ -38,9 +38,18 @@ class UsersController < ApplicationController
     end
 
     def newAccount
-        user = User.new(user_params)
+        user = User.new(username: user_params[:username], email: user_params[:email], password: user_params[:password],
+        accountability_partner: User.first.id)
         
         if user.save
+            life_status = LifeStatusTracker.create(
+            finances: 0,
+            dating: 0,
+            social: 0,
+            spiritual: 0,
+            health: 0,
+            user_id: user.id
+        )
             render json: { username: user.username, token: issue_token({ id: user.id }) }, status: :created
         else
             render json: { user_errors: user.errors.full_messages }, status: :unprocessable_entity

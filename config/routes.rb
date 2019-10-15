@@ -14,4 +14,5 @@ Rails.application.routes.draw do
 
   patch '/updateActionItemIsCompleted', to: 'action_items#updateActionItemIsCompleted'
   patch '/updateAccountabilityDate', to: 'users#updateAccountabilityDate'
+  patch '/lifeStatusUpdate', to: 'life_status_trackers#lifeStatusUpdate'
 end
