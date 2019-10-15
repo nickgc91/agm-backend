@@ -8,7 +8,7 @@ class ActionItemsController < ApplicationController
             action.update(isCompleted: true)
             render json: action
         else
-            render json: { user_errors: user.errors.full_messages }, status: :unprocessable_entity
+            render json: { action_item_errors: action.errors.full_messages }, status: :unprocessable_entity
         end
     end
 

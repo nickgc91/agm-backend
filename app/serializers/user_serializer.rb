@@ -24,7 +24,11 @@ class UserSerializer < ActiveModel::Serializer
 
     def accountability_partner
         accPartner = User.find_by(id: self.object.accountability_partner)
-        accPartner.username
+        if accPartner
+            accPartner.username
+        else
+            ""
+        end
     end
 
     def journalings 
