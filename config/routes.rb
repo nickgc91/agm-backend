@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get '/validate', to: 'users#validate'
   get '/getUserData', to: 'users#getUserData'
   get '/getAccPartner', to: 'users#getAccPartner'
+  get '/provideMastermindUpdates', to: 'users#provideMastermindUpdates'
 
   patch '/updateActionItemIsCompleted', to: 'action_items#updateActionItemIsCompleted'
   patch '/updateAccountabilityDate', to: 'users#updateAccountabilityDate'

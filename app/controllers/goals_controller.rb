@@ -9,11 +9,11 @@ class GoalsController < ApplicationController
     def createNewGoal
         user = get_current_user
         goal = Goal.create(title: goal_params[:goalName], completion_status: '0%', user_id: user.id )
-        actionItem1 = ActionItem.create(action: goal_params[:actionItem1], goal_id: goal.id )
-        actionItem2 = ActionItem.create(action: goal_params[:actionItem2], goal_id: goal.id)
-        actionItem3 = ActionItem.create(action: goal_params[:actionItem3], goal_id: goal.id)
+        actionItem1 = ActionItem.new(action: goal_params[:actionItem1], goal_id: goal.id )
+        actionItem2 = ActionItem.new(action: goal_params[:actionItem2], goal_id: goal.id)
+        actionItem3 = ActionItem.new(action: goal_params[:actionItem3], goal_id: goal.id)
 
-        if goal && actionItem1 && actionItem2 && actionItem3
+        if goal && actionItem1.save && actionItem2.save && actionItem3.save
             render json: { goal_title: goal.title, goal_completion_status: goal.completion_status }, status: :created
         else
             render json: { user_errors: user.errors.full_messages }, status: :unprocessable_entity

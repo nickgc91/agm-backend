@@ -40,6 +40,10 @@ class UserSerializer < ActiveModel::Serializer
             }
          end
     end
+
+    def mastermind_status_update
+        self.object.mastermind_status_update
+    end
      
 end
 
