@@ -6,26 +6,26 @@ class UsersController < ApplicationController
         sortedGoals = Goal.all.sort_by( &:updated_at).reverse.take(3)
         sortedGoals = sortedGoals.map{ |goal| 
         user = User.find_by(id: goal.user_id)
-        { action: 'goal', name: goal.title, user: user.username }}
+        [goal.title, user.username ] }
 
         sortedJournaling = Journaling.all.sort_by( &:updated_at).reverse.take(3)
         sortedJournaling = sortedJournaling.map{ |journal| 
         user = User.find_by(id: journal.user_id)
-        { action: 'journal entry', name: journal.title, user: user.username }}
+        [journal.title, user.username] }
 
         sortedLifeStatusTracker = LifeStatusTracker.all.sort_by( &:updated_at).reverse.take(3)
         sortedLifeStatusTracker = sortedLifeStatusTracker.map{ |status| 
         user = User.find_by(id: status.user_id)
-        { action: 'life status tracker', user: user.username, name: '' }}
+        [user.username] }
 
         sortedActionItems = ActionItem.all.sort_by( &:updated_at).reverse.take(3)
         sortedActionItems = sortedActionItems.map{ |action| 
         goal = Goal.find_by(id: action.goal_id)
         user = User.find_by(id: goal.user_id)
-        { action: 'action item', name: action.action, user: user.username }}
+        [ action.action, user.username]}
         
         
-        render json: [sortedGoals, sortedJournaling, sortedLifeStatusTracker, sortedActionItems].reverse
+        render json: [sortedGoals, sortedJournaling, sortedLifeStatusTracker, sortedActionItems]
     end
 
 
