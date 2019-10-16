@@ -8,6 +8,9 @@
 
 User.destroy_all
 Goal.destroy_all
+ActionItem.destroy_all
+Journaling.destroy_all
+LifeStatusTracker.destroy_all
 
 User.create(username: "Martin", password: '123456', email: "martin@martin.com", accountability_partner: 4)
 User.create(username: "Harry", password: '123456', email: "Harry@Harry.com", accountability_partner: 1)
