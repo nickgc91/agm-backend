@@ -1,9 +1,8 @@
 class User < ApplicationRecord
     has_secure_password 
     
-    # validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
-    # validates :username, :email, :password, presence: true
-
+    validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
+ 
     has_many :goals
     has_many :action_items, through: :goals
     has_many :journalings
