@@ -40,7 +40,7 @@ class UsersController < ApplicationController
     end
 
     def index
-        users = User.all
+        users = User.all.sort_by{|user| user.id }
         render json: users
     end
 
