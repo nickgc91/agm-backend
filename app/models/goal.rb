@@ -14,7 +14,7 @@ class Goal < ApplicationRecord
             number = ((completedItems.to_f / total_action_items.to_f) * 100.0)
             number
         else
-            return "You haven't set any action items yet."
+            return ''
         end
     end
 
