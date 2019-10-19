@@ -70,16 +70,17 @@ class UsersController < ApplicationController
     end
 
     def newAccount
+        acc_num = rand(1..User.all.length)
         user = User.new(username: user_params[:username], email: user_params[:email], password: user_params[:password],
-        accountability_partner: User.first.id)
+        accountability_partner: acc_num)
         
         if user.save
             life_status = LifeStatusTracker.create(
-            finances: 0,
-            dating: 0,
-            social: 0,
-            spiritual: 0,
-            health: 0,
+            finances: 5,
+            dating: 5,
+            social: 5,
+            spiritual: 5,
+            health: 5,
             user_id: user.id
             )
             render json: { username: user.username, token: issue_token({ id: user.id }) }, status: :created

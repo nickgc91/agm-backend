@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   post '/createNewGoal', to: 'goals#createNewGoal'
   post '/deleteGoal', to: 'goals#deleteGoal'
   post '/createNewJournalEntry', to: 'journalings#createNewJournalEntry'
+  post '/deleteJournalEntry', to: 'journalings#deleteJournalEntry'
+
 
   get '/validate', to: 'users#validate'
   get '/getUserData', to: 'users#getUserData'
