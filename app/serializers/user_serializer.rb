@@ -25,7 +25,10 @@ class UserSerializer < ActiveModel::Serializer
     def accountability_partner
         accPartner = User.find_by(id: self.object.accountability_partner)
         if accPartner
-            accPartner.username
+            {
+                accPartner: accPartner.username,
+                last_meeting: last_meeting
+            }
         else
             ""
         end
@@ -36,7 +39,8 @@ class UserSerializer < ActiveModel::Serializer
             {   
                 journal_id: journal.id,
                 journal_title: journal.title,
-                journal_text: journal.text
+                journal_text: journal.text,
+                created: journal.created_at.to_s.slice(0..9)
             }
          end
     end
