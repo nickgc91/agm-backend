@@ -18,7 +18,7 @@ class UsersController < ApplicationController
         user = User.find_by(id: status.user_id)
         [user.username] }
 
-        sortedActionItems = ActionItem.all.select{ |action| action.isCompleted == true }.sort_by( &:updated_at).reverse.take(3)
+        sortedActionItems = ActionItem.all.select{ |action| action.isCompleted == true }.sort_by( &:updated_at).reverse.take(6)
         sortedActionItems = sortedActionItems.map{ |action| 
         goal = Goal.find_by(id: action.goal_id)
         user = User.find_by(id: goal.user_id)
