@@ -50,8 +50,7 @@ class UsersController < ApplicationController
     end
 
     def getUserData
-        user = User.find_by(username: 'Nick')
-        # user = get_current_user
+        user = get_current_user
         if user
             render json: user
         else
