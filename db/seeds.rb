@@ -12,6 +12,7 @@ ActionItem.destroy_all
 Journaling.destroy_all
 LifeStatusTracker.destroy_all
 
+User.create(username: "Nick", password: '123456', email: "nick@nick.com", accountability_partner: 3)
 User.create(username: "Imran", password: '123456', email: "martin@martin.com", accountability_partner: 4)
 User.create(username: "Conrad", password: '123456', email: "Harry@Harry.com", accountability_partner: 1)
 User.create(username: "Yann", password: '123456', email: "Rod@Rod.com", accountability_partner: 2)
