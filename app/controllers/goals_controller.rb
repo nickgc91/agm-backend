@@ -7,8 +7,8 @@ class GoalsController < ApplicationController
     end
 
     def createNewGoal
-        # user = get_current_user
-        user = User.find_by(username: 'Imran')
+        user = get_current_user
+        # user = User.find_by(username: 'Imran')
         goal = Goal.create(title: goal_params[:goalName], completion_status: '0%', user_id: user.id )
         if goal_params[:actionItem1] != ''
             actionItem1 = ActionItem.create(action: goal_params[:actionItem1], goal_id: goal.id )
