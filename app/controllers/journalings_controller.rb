@@ -3,6 +3,7 @@ class JournalingsController < ApplicationController
     wrap_parameters :journaling, include: [:title, :text, :journalId]
 
     def createNewJournalEntry
+        byebug
         user = get_current_user
         journal = Journaling.new(title: new_journal_params[:title], text: new_journal_params[:text], user_id: user.id)
 
