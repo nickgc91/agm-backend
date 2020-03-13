@@ -3,8 +3,9 @@ class JournalingsController < ApplicationController
     wrap_parameters :journaling, include: [:title, :text, :journalId]
 
     def createNewJournalEntry
-        byebug
-        user = get_current_user
+        # user = get_current_user
+        # byebug
+        user = User.find_by(username: 'Imran')
         journal = Journaling.new(title: new_journal_params[:title], text: new_journal_params[:text], user_id: user.id)
 
         if journal.save 
@@ -15,6 +16,7 @@ class JournalingsController < ApplicationController
     end
 
     def deleteJournalEntry
+        # byebug
         journal = Journaling.find_by(id: delete_params[:journalId])
         if journal 
             journal.destroy
